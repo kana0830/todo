@@ -33,8 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               title: Text(todoList[index]),
-              subtitle: const Text('subtitle'),
-              trailing: const Icon(Icons.more_vert),
+              subtitle: Text('subtitle'),
+              trailing: Icon(Icons.more_vert),
             ),
           );
         },
