@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:todo/repository/todo.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,20 +23,18 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: todoList.length,
         itemBuilder: (context, index) {
           return Card(
-            child: ListTile(
-              leading: Checkbox(
-                value: isChecked,
-                onChanged: (value) {
-                  setState(
-                    () {
-                      isChecked = value!; // チェックボックスに渡す値を更新する
-                    },
-                  );
-                },
-              ),
+            child: CheckboxListTile(
+              value: isChecked,
+              onChanged: (value) async{
+                setState(
+                  () {
+                    isChecked = value!; // チェックボックスに渡す値を更新する
+                  },
+                );
+              },
               title: Text(todoList[index]),
-              subtitle: Text('subtitle'),
-              trailing: Icon(Icons.more_vert),
+              subtitle: const Text('subtitle'),
+              controlAffinity: ListTileControlAffinity.leading,
             ),
           );
         },
@@ -42,3 +42,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
