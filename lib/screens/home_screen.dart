@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 setState(
                   () {
                     isChecked = value!; // チェックボックスに渡す値を更新する
+
                   },
                 );
               },
