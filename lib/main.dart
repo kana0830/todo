@@ -19,13 +19,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'TODO',
       theme: ThemeData(
         brightness: Brightness.dark,
         textTheme: const TextTheme(
           bodyMedium: TextStyle(fontSize: 16.0),
         ),
       ),
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

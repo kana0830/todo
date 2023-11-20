@@ -13,10 +13,5 @@ class Todo {
 
   Todo({required this.title, required this.subTitle, required this.isCheck});
 
-  Future<DocumentSnapshot> get() async {
-    CollectionReference todo = FirebaseFirestore.instance.collection('todo');
-    final doc = await todo.doc('1').get();
-    return doc;
-  }
 
 }
