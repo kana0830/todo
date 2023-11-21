@@ -4,9 +4,7 @@ import 'package:todo/screens/home_screen.dart';
 
 import '../repository/todo.dart';
 
-
 class CheckBoxListModel {
-
   Future<String> get() async {
     CollectionReference todo = FirebaseFirestore.instance.collection('todo');
     final doc = await todo.doc('1').get();
@@ -16,25 +14,25 @@ class CheckBoxListModel {
   // モデル => ウィジェット に変換する
   Widget modelToWidget(DocumentSnapshot<Object?> document) {
     // タイトル
-    final title = document['title'];
-    final subtitle = document['subtitle'];
-    final ischeck = document['isCheck'];
+    final task = document['task'];
+    final detail = document['detail'];
+    final endFlg = document['endFlg'];
 
     // 部品を並べる
     return Card(
       child: CheckboxListTile(
-        value: ischeck,
+        value: endFlg,
         onChanged: (value) {
           // itemChange(document, value!);
         },
-        title: Text(title),
-        subtitle: Text(subtitle),
+        title: Text(task),
+        subtitle: Text(detail),
         controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
 
-  // void itemChange(var model, bool value) {
-  //   model.isCheck = value;
-  // }
+// void itemChange(var model, bool value) {
+//   model.isCheck = value;
+// }
 }

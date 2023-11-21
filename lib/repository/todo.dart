@@ -5,13 +5,13 @@ import 'package:firebase_core/firebase_core.dart';
 
 class Todo {
 
-  late String title;
-  late String subTitle;
-  late bool isCheck;
+  late String task;
+  late String detail;
+  late bool endFlg;
 
 
 
-  Todo({required this.title, required this.subTitle, required this.isCheck});
+  Todo({required this.task, required this.detail, required this.endFlg});
 
 
 }
