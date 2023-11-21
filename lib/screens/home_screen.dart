@@ -31,16 +31,9 @@ class HomeScreen extends StatelessWidget {
             );
           }
           final List<DocumentSnapshot> todoSnapshot = snapshot.data!.docs;
-          final countList = todoSnapshot.length;
-          final List<Card> todoList = todoSnapshot.map((document) {
-            return Card(
-              child: Center(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: countList,
-                  itemBuilder: (c, i) => CheckBoxListModel().modelToWidget(document),
-                ),
-              ),
+          final List<Center> todoList = todoSnapshot.map((document) {
+            return Center(
+                child: CheckBoxListModel().modelToWidget(document),
             );
           }).toList();
           return Column(
