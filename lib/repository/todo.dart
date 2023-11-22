@@ -9,9 +9,5 @@ class Todo {
   late String detail;
   late bool endFlg;
 
-
-
   Todo({required this.task, required this.detail, required this.endFlg});
-
-
 }

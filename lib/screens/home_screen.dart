@@ -2,19 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/viewmodel/check_box_list_model.dart';
 
-import '../viewmodel/check_box_list_model.dart';
-import '../viewmodel/check_box_list_model.dart';
-
 class HomeScreen extends StatelessWidget {
-  // void moveToCreatePage(context) {
-  //   Navigator.of(context).pushReplacementNamed('/todo_create');
-  // }
-  //
-  // void deleteDoc(context, docId) async {
-  //   await FirebaseFirestore.instance.collection('todo').doc(docId).delete();
-  //   Navigator.of(context).pushReplacementNamed('/home');
-  // }
-
 
   @override
   Widget build(BuildContext context) {
