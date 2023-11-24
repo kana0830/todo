@@ -18,6 +18,8 @@ void main() async {
   );
 }
 
+final isCheckProvider = Provider((ref) => false);
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
