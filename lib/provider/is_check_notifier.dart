@@ -10,6 +10,7 @@ class IsCheckNotifier extends _$IsCheckNotifier {
     return false;
   }
 
+
   // 状態を変更するコード
   void updateState() {
     // 変更前のデータ
@@ -17,6 +18,6 @@ class IsCheckNotifier extends _$IsCheckNotifier {
     // 変更後のデータ
     final newState = state;
 
-    retur fireStore.com.jp
+    retur
   }
 }
