@@ -18,6 +18,6 @@ class IsCheckNotifier extends _$IsCheckNotifier {
     // 変更後のデータ
     final newState = state;
 
-    retur
+    return ;
   }
 }
