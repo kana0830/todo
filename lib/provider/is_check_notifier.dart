@@ -26,6 +26,14 @@ class IsCheckNotifier extends _$IsCheckNotifier {
     } else {
       newState = true;
     }
-    return newState;
+    FirebaseFirestore.instance.collection('todo').doc(document.id).update({
+      'endFlg' : newState
+    });
+    var endFlg = false;
+    FirebaseFirestore.instance.collection('todo')
+        .doc(document.id).snapshots().listen((DocumentSnapshot snapshot) {
+      endFlg = snapshot.get('endFlg');
+    });
+    return endFlg;
   }
 }

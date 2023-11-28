@@ -6,7 +6,15 @@ import 'package:todo/viewmodel/check_box_list_model.dart';
 
 class HomeScreen extends ConsumerWidget {
   @override
+
+  final AutoDisposeStateProvider<bool> _isCheckedProvider =
+  StateProvider.autoDispose((ref) {
+    return false;
+  });
+
   Widget build(BuildContext context, WidgetRef ref) {
+    final bool isChecked = ref.watch(_isCheckedProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("TODO一覧"),
@@ -27,10 +35,10 @@ class HomeScreen extends ConsumerWidget {
               child: CheckboxListTile(
                 value: value,
                 onChanged: (value) {
-                  // S3 ノティファイアを呼ぶ
+                  // ノティファイアを呼ぶ
                   final notifier = ref.read(isCheckNotifierProvider.notifier);
-                  // S3 データを変更
-                  notifier.updateState(document);
+                  // データを変更
+                  value = notifier.updateState(document);
                 },
                 title: Text(document['task']),
                 subtitle: Text(document['detail']),
