@@ -37,7 +37,7 @@ class HomeScreen extends ConsumerWidget {
                 onChanged: (value) {
                   // ノティファイアを呼ぶ
                   final notifier = ref.read(isCheckNotifierProvider.notifier);
-                  // データを変更
+                  // データの変更
                   value = notifier.updateState(document);
                 },
                 title: Text(document['task']),
