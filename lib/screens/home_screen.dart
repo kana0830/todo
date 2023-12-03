@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/provider/is_check_notifier.dart';
-import 'package:todo/viewmodel/check_box_list_model.dart';
 
 class HomeScreen extends ConsumerWidget {
   @override
