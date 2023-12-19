@@ -1,52 +1,48 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todo/provider/is_check_notifier.dart';
+import '../repository/todo.dart';
+import '../viewmodel/todo_notifier.dart';
 
 class HomeScreen extends ConsumerWidget {
   @override
-
   final AutoDisposeStateProvider<bool> _isCheckedProvider =
   StateProvider.autoDispose((ref) {
     return false;
   });
 
   Widget build(BuildContext context, WidgetRef ref) {
-    final bool isChecked = ref.watch(_isCheckedProvider);
-
+    List<Todo> todos = ref.watch(todosProvider);
+    var lists = Todo().getTodoList();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("TODO一覧"),
+        title: Text('TODO一覧'),
       ),
-      body: FutureBuilder<QuerySnapshot>(
-        future: FirebaseFirestore.instance.collection('todo').get(),
-        builder: ((context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          final List<DocumentSnapshot> todoSnapshot = snapshot.data!.docs;
-          final List<Center> todoList = todoSnapshot.map((document) {
-            var value = document['endFlg'];
-            return Center(
-                child: Card(
-              child: CheckboxListTile(
-                value: value,
-                onChanged: (value) {
-                  // ノティファイアを呼ぶ
-                  final notifier = ref.read(isCheckNotifierProvider.notifier);
-                  // データの変更
-                  value = notifier.updateState(document);
-                },
-                title: Text(document['task']),
-                subtitle: Text(document['detail']),
-                controlAffinity: ListTileControlAffinity.leading,
+      body: SingleChildScrollView(
+        child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            for (final todo in todos)
+              ListTile(
+                title: Text(todo.task),
+                trailing: IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  ),
+                  onPressed: () {
+                    ref.read(todosProvider.notifier);
+                  },
+                ),
               ),
-            ));
-          }).toList();
-          return Column(children: todoList);
-        }),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          ref.read(todosProvider.notifier);
+        },
       ),
     );
   }
