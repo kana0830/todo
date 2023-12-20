@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../repository/todo.dart';
@@ -11,8 +12,7 @@ class HomeScreen extends ConsumerWidget {
   });
 
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Todo> todos = ref.watch(todosProvider);
-    var lists = Todo().getTodoList();
+    CollectionReference<Map<String, dynamic>> todos = ref.watch(todosProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text('TODO一覧'),
