@@ -14,8 +14,13 @@ class TodoRepository {
   }
 
   Future<void> updateTodo(id, value) async {
-    FirebaseFirestore.instance.collection('users').doc(id).update({
-      'endFlg' : 'value'
+    var flugValue = 0;
+    if(value){
+      flugValue = 1;
+    }
+    FirebaseFirestore.instance.collection('todo').doc(id).update({
+      'endFlg' : flugValue
     });
+    print('update');
   }
 }

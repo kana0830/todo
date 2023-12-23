@@ -5,7 +5,7 @@ class Todo {
   late String id;
   late String task;
   late String detail;
-  late bool endFlg;
+  late int endFlg;
 
   Todo(DocumentSnapshot doc, docId) {
     id = docId;
