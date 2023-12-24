@@ -12,7 +12,13 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final todos = ref.watch(todoNotifierProvider);
     final todo = todos.when(
-      loading: () => const Text('準備中'),
+      loading: () => const Center(
+        child: Column(children: [
+          CircularProgressIndicator(
+            color: Colors.green,
+          ),
+        ]),
+      ),
       error: (e, s) => Text('エラー $e'),
       data: (d) => ListView(
         shrinkWrap: true,
@@ -23,8 +29,9 @@ class HomeScreen extends ConsumerWidget {
               child: CheckboxListTile(
                 value: todo.endFlg == 1 ? true : false,
                 onChanged: (value) {
-                  final notifier = ref.watch(todoNotifierProvider.notifier);
+                  final notifier = ref.read(todoNotifierProvider.notifier);
                   notifier.updateState(todo.id, value);
+                  ref.read(todoNotifierProvider.notifier).state = todos;
                 },
                 title: Text(todo.task),
                 subtitle: Text(todo.detail),
@@ -34,11 +41,13 @@ class HomeScreen extends ConsumerWidget {
         ],
       ),
     );
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('TODO一覧'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('TODO一覧'),
+        ),
+        body: SingleChildScrollView(child: todo),
       ),
-      body: SingleChildScrollView(child: todo),
     );
   }
 }

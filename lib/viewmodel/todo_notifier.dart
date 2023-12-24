@@ -18,7 +18,8 @@ class TodoNotifier extends _$TodoNotifier {
   }
 
   // update
-  Future<void> updateState(id, value) async{
+  void updateState(id, value) {
     _todoRepository.updateTodo(id, value);
+    // todos[int.parse(id)-1].endFlg = value ? 1 : 0;
   }
 }
