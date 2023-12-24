@@ -8,10 +8,10 @@ part '../repository/todo_notifier.g.dart';
 
 @riverpod
 class TodoNotifier extends _$TodoNotifier {
-  @override
   List<Todo> todos = [];
   final _todoRepository = TodoRepository();
 
+  @override
   Future<List<Todo>> build() async{
     todos = await _todoRepository.getTodo();
     return todos;
