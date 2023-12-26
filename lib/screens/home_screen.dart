@@ -29,10 +29,8 @@ class HomeScreen extends ConsumerWidget {
               child: CheckboxListTile(
                 value: todo.endFlg == 1 ? true : false,
                 onChanged: (value) {
-                  final t = ref.read(todoNotifierProvider);
                   final notifier = ref.read(todoNotifierProvider.notifier);
                   notifier.updateState(todo.id, value);
-                  ref.read(todoNotifierProvider.notifier).state = [...t];
                 },
                 title: Text(todo.task),
                 subtitle: Text(todo.detail),

@@ -13,8 +13,8 @@ class TodoRepository {
     return todos;
   }
 
-  void updateTodo(id, value) {
-    FirebaseFirestore.instance.collection('todo').doc(id).update({
+  void updateTodo(id, value) async{
+    await FirebaseFirestore.instance.collection('todo').doc(id).update({
       'endFlg' : value ? 1 : 0
     });
   }
