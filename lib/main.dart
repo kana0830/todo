@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 16.0),
         ),
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
