@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo/screens/registration_screen.dart';
 import 'package:todo/viewmodel/todo_notifier.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -46,6 +47,15 @@ class HomeScreen extends ConsumerWidget {
           title: const Text('TODO一覧'),
         ),
         body: SingleChildScrollView(child: todo),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const RegistrationScreen()),
+            );
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
