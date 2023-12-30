@@ -5,6 +5,12 @@ class RegistrationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(child: Scaffold());
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('TODO登録'),
+        ),
+      ),
+    );
   }
 }
