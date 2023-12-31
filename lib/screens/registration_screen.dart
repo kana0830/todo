@@ -9,6 +9,18 @@ class RegistrationScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('TODO登録'),
+          actions: [
+            IconButton(onPressed: () => _addTodo, icon: Icon(Icons.add))
+          ],
+        ),
+        body: Container(
+          width: double.infinity,
+          child: const TextField(
+            autofocus: true,
+            decoration: InputDecoration(
+              border: InputBorder.none
+            ),
+          ),
         ),
       ),
     );

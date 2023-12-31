@@ -18,4 +18,12 @@ class TodoRepository {
       'endFlg' : value ? 1 : 0
     });
   }
+
+  void insertTodo(value) async{
+    await FirebaseFirestore.instance.collection('todo').add({
+      'task' : value.task,
+      'detail': value.detail,
+      'endFlg' : 0,
+    });
+  }
 }
