@@ -24,8 +24,8 @@ class TodoNotifier extends _$TodoNotifier {
     state = AsyncData<List<Todo>>(todos);
   }
 
-  void insertState(value) async{
-    _todoRepository.insertTodo(value);
+  void insertState(task, detail) async{
+    _todoRepository.insertTodo(task, detail);
     // var updatedTodos = await _todoRepository.getTodo();
     // todos = updatedTodos;
     // state = AsyncData<List<Todo>>(todos);

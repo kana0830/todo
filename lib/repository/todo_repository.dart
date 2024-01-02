@@ -19,10 +19,10 @@ class TodoRepository {
     });
   }
 
-  void insertTodo(value) async{
+  void insertTodo(task, detail) async{
     await FirebaseFirestore.instance.collection('todo').add({
-      'task' : value.task,
-      'detail': value.detail,
+      'task' : task,
+      'detail': detail,
       'endFlg' : 0,
     });
   }
