@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/viewmodel/todo_notifier.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class RegistrationScreen extends ConsumerWidget {
   const RegistrationScreen({super.key});
@@ -18,35 +19,45 @@ class RegistrationScreen extends ConsumerWidget {
                 onPressed: () {
                   final notifier = ref.read(todoNotifierProvider.notifier);
                   notifier.insertState(task, detail);
+                  Fluttertoast.showToast(
+                      msg: '登録しました',
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.BOTTOM);
+                  task = '';
+                  detail = '';
                 },
                 icon: const Icon(Icons.add))
           ],
         ),
-        body: SizedBox(
-          width: double.infinity,
-          child: Column(
-            children: [
-              TextField(
-                autofocus: true,
-                decoration: const InputDecoration(
-                  hintText: 'task',
-                  border: InputBorder.none
+        body: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                TextField(
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    hintText: '　task',
+                  ),
+                  onChanged: (text) {
+                    task = text;
+                  },
                 ),
-                onChanged: (text){
-                  task = text;
-                },
-              ),
-              TextField(
-                autofocus: true,
-                decoration: const InputDecoration(
-                    hintText: 'detail',
-                    border: InputBorder.none
+                const SizedBox(
+                  height: 10.0,
                 ),
-                onChanged: (text){
-                  detail = text;
-                },
-              )
-            ],
+                TextField(
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    hintText: '　detail',
+                  ),
+                  onChanged: (text) {
+                    detail = text;
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
